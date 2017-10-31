@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="generator" content="Hugo 0.30.2" />
+    <meta name="author" content="seisman">
+    
+    <title>
+    
+        Linux 笔记 | SeisMan&#39;s Wiki
+    
+    </title>
+
+    
+    <link href="https://cdn.bootcss.com/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/featherlight/1.5.0/featherlight.min.css" rel="stylesheet">
+    <link href="http://wiki.seisman.info/css/style.css" rel="stylesheet">
+
+    
+</head>
+
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand " href="/">SeisMan&#39;s Wiki</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right ">
+        
+        
+        
+        <li class="nav-item"><a href="https://github.com/seisman/wiki">GitHub</a></li>
+        
+        
+        
+        <li> <a href="https://github.com/seisman/wiki/blob/master/content/Geek/Linux.md" target="blank">Edit on GitHub</a></li>
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+        
+<ul class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  
+  
+  
+  
+  
+  <li><a href='http://wiki.seisman.info/geek'>geek</a></li>
+  
+  
+  
+  
+  
+  <li><a href='http://wiki.seisman.info/geek/linux'>Linux 笔记</a></li>
+  
+  
+  
+  
+</ul>
+
+
+        
+<h1>Linux 笔记</h1>
+<div class="row">
+  <div id="toc" class="well col-md-3 col-sm-4">
+  <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#有用的命令">有用的命令</a></li>
+<li><a href="#linux-学习资源">Linux 学习资源</a></li>
+<li><a href="#linux-相关资源">Linux 相关资源</a></li>
+<li><a href="#linux下的效率工具">Linux下的效率工具</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+  <div class="col-md-9">
+  
+
+<h2 id="有用的命令">有用的命令</h2>
+
+<p>递归删除当前目录下的空文件夹:</p>
+
+<pre><code>find . -type d -empty -delete
+</code></pre>
+
+<p>删除当前目录下大小为零的文件:</p>
+
+<pre><code>find . -size 0 -delete
+</code></pre>
+
+<p>同步但不删除:</p>
+
+<pre><code>rsync -av 2012* user@hostip:/data --progressr
+</code></pre>
+
+<p>将中文编码修改为UTF-8编码:</p>
+
+<pre><code>enca -L zh_CN -x UTF-8 infile
+</code></pre>
+
+<p>将文件内容复制到剪贴板:</p>
+
+<pre><code>xclip -sel clip &lt; xxx.txt
+</code></pre>
+
+<p>开机自动启动 ssh 服务:</p>
+
+<pre><code>chkconfig sshd on
+</code></pre>
+
+<h2 id="linux-学习资源">Linux 学习资源</h2>
+
+<ol>
+<li><a href="http://linuxtools-rst.readthedocs.io/zh_CN/latest/">Linux 工具快速教程</a></li>
+</ol>
+
+<h2 id="linux-相关资源">Linux 相关资源</h2>
+
+<ol>
+<li><a href="http://packages.ubuntu.com/">Ubuntu 软件包查询</a></li>
+<li><a href="https://pkgs.org/">Linux 软件包查询</a></li>
+</ol>
+
+<h2 id="linux下的效率工具">Linux下的效率工具</h2>
+
+<ol>
+<li><a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a></li>
+<li><a href="https://github.com/wting/autojump">auto-jump</a></li>
+<li><a href="https://github.com/zsh-users/zsh-autosuggestions">zsh-autosuggestions</a></li>
+<li><a href="https://beyondgrep.com/">ack</a></li>
+</ol>
+
+  </div>
+</div>
+
+
+        <footer class="footer">
+    <div class="container">
+        &copy;  2017 - 
+        <span itemprop="copyrightYear"> 2017</span>
+        <span class="with-love"><i class="fa fa-heart"></i></span>
+        <span class="author" itemprop="copyrightHolder">seisman</span>
+        <div class="powered-by">
+            Powered by <a href="https://gohugo.io">Hugo</a>.
+            
+            Last revision: 2017-07-19T00:39:42
+            
+        </div>
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://wiki.seisman.info/js/script.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    }
+  });
+</script>
+
+<script type="text/javascript"
+    src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="generator" content="Hugo 0.30.2" />
+    <meta name="author" content="seisman">
+    
+    <title>
+    
+        atom 编辑器 | SeisMan&#39;s Wiki
+    
+    </title>
+
+    
+    <link href="https://cdn.bootcss.com/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/featherlight/1.5.0/featherlight.min.css" rel="stylesheet">
+    <link href="http://wiki.seisman.info/css/style.css" rel="stylesheet">
+
+    
+</head>
+
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand " href="/">SeisMan&#39;s Wiki</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right ">
+        
+        
+        
+        <li class="nav-item"><a href="https://github.com/seisman/wiki">GitHub</a></li>
+        
+        
+        
+        <li> <a href="https://github.com/seisman/wiki/blob/master/content/Geek/atom.md" target="blank">Edit on GitHub</a></li>
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+        
+<ul class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  
+  
+  
+  
+  
+  <li><a href='http://wiki.seisman.info/geek'>geek</a></li>
+  
+  
+  
+  
+  
+  <li><a href='http://wiki.seisman.info/geek/atom'>atom 编辑器</a></li>
+  
+  
+  
+  
+</ul>
+
+
+        
+<h1>atom 编辑器</h1>
+<div class="row">
+  <div id="toc" class="well col-md-3 col-sm-4">
+  <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#安装">安装</a></li>
+<li><a href="#基础操作">基础操作</a></li>
+<li><a href="#插件列表">插件列表</a>
+<ul>
+<li><a href="#markdown">markdown</a></li>
+<li><a href="#python">Python</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+  <div class="col-md-9">
+  
+
+<p>atom 是 GitHub 官方推出的编辑器，具有开向即用、可扩展性强等特点。唯一的
+缺点是启动速度偏慢，解决办法是长期打开一个编辑器窗口不关闭。</p>
+
+<ul>
+<li>主页： <a href="https://atom.io/">https://atom.io/</a></li>
+<li>插件： <a href="https://atom.io/packages">https://atom.io/packages</a></li>
+<li>主题： <a href="https://atom.io/themes">https://atom.io/themes</a></li>
+<li>文档： <a href="http://flight-manual.atom.io/">http://flight-manual.atom.io/</a></li>
+</ul>
+
+<h2 id="安装">安装</h2>
+
+<ol>
+<li>下载 <a href="https://atom.io/download/rpm">https://atom.io/download/rpm</a></li>
+
+<li><p>安装:</p>
+
+<pre><code>yum localinstall atom.x86_64.rpm
+</code></pre></li>
+</ol>
+
+<h2 id="基础操作">基础操作</h2>
+
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>Ctrl+Shift+P</code></td>
+<td>打开命令面板</td>
+</tr>
+
+<tr>
+<td><code>Ctrl+,</code></td>
+<td>打开设置面板，由 <code>settings-view</code> 提供</td>
+</tr>
+
+<tr>
+<td><code>Ctrl+\</code></td>
+<td>打开Tree view</td>
+</tr>
+
+<tr>
+<td><code>Alt+\</code></td>
+<td>focus在tree view</td>
+</tr>
+
+<tr>
+<td><code>Ctrl+W</code></td>
+<td>关闭当前标签页</td>
+</tr>
+
+<tr>
+<td><code>Ctrl+O</code></td>
+<td>打开文件</td>
+</tr>
+
+<tr>
+<td><code>Ctrl+S</code></td>
+<td>保存文件</td>
+</tr>
+
+<tr>
+<td><code>Ctrl+Shift+S</code></td>
+<td>另存为</td>
+</tr>
+
+<tr>
+<td><code>Ctrl+Alt+S</code></td>
+<td>保存所有文件</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="插件列表">插件列表</h2>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>sync-settings</code></td>
+<td>用于同步/备份 atom 配置文件</td>
+</tr>
+
+<tr>
+<td><code>seti-icons</code></td>
+<td>好看的文件图标</td>
+</tr>
+
+<tr>
+<td><code>pdf-view</code></td>
+<td>在 atom 中预览 PDF</td>
+</tr>
+
+<tr>
+<td><code>atom-beautify</code></td>
+<td>代码格式化工具</td>
+</tr>
+
+<tr>
+<td><code>minimap</code></td>
+<td>窗口右侧显示minimap</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="markdown">markdown</h3>
+
+<ol>
+<li>禁用 atom 内置插件 <code>markdown-preview</code></li>
+<li>安装 <a href="https://github.com/shd101wyy/markdown-preview-enhanced">markdown-preview-enhanced</a></li>
+</ol>
+
+<h3 id="python">Python</h3>
+
+<ol>
+<li><code>autocomplete-python</code>: Python 语法补全插件</li>
+</ol>
+
+  </div>
+</div>
+
+
+        <footer class="footer">
+    <div class="container">
+        &copy;  2017 - 
+        <span itemprop="copyrightYear"> 2017</span>
+        <span class="with-love"><i class="fa fa-heart"></i></span>
+        <span class="author" itemprop="copyrightHolder">seisman</span>
+        <div class="powered-by">
+            Powered by <a href="https://gohugo.io">Hugo</a>.
+            
+            Last revision: 2017-05-20T22:33:01
+            
+        </div>
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://wiki.seisman.info/js/script.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    }
+  });
+</script>
+
+<script type="text/javascript"
+    src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    </div>
+</body>
+</html>

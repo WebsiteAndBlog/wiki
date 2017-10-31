@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="generator" content="Hugo 0.30.2" />
+    <meta name="author" content="seisman">
+    
+    <title>
+    
+        zsh | SeisMan&#39;s Wiki
+    
+    </title>
+
+    
+    <link href="https://cdn.bootcss.com/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/featherlight/1.5.0/featherlight.min.css" rel="stylesheet">
+    <link href="http://wiki.seisman.info/css/style.css" rel="stylesheet">
+
+    
+</head>
+
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand " href="/">SeisMan&#39;s Wiki</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right ">
+        
+        
+        
+        <li class="nav-item"><a href="https://github.com/seisman/wiki">GitHub</a></li>
+        
+        
+        
+        <li> <a href="https://github.com/seisman/wiki/blob/master/content/Geek/zsh.md" target="blank">Edit on GitHub</a></li>
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+        
+<ul class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  
+  
+  
+  
+  
+  <li><a href='http://wiki.seisman.info/geek'>geek</a></li>
+  
+  
+  
+  
+  
+  <li><a href='http://wiki.seisman.info/geek/zsh'>zsh</a></li>
+  
+  
+  
+  
+</ul>
+
+
+        
+<h1>zsh</h1>
+<div class="row">
+  <div id="toc" class="well col-md-3 col-sm-4">
+  <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#安装-zsh">安装 zsh</a></li>
+<li><a href="#安装-oh-my-zsh">安装 oh-my-zsh</a></li>
+<li><a href="#zsh-插件">zsh 插件</a>
+<ul>
+<li><a href="#autojump">autojump</a></li>
+<li><a href="#extract">extract</a></li>
+<li><a href="#pip">pip</a></li>
+<li><a href="#colored-man-pages">colored-man-pages</a></li>
+<li><a href="#sudo">sudo</a></li>
+<li><a href="#一些命令补全插件">一些命令补全插件</a></li>
+</ul></li>
+<li><a href="#zsh-主题">zsh 主题</a></li>
+<li><a href="#相关资源">相关资源</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+  <div class="col-md-9">
+  
+
+<h2 id="安装-zsh">安装 zsh</h2>
+
+<pre><code>yum install zsh
+</code></pre>
+
+<h2 id="安装-oh-my-zsh">安装 oh-my-zsh</h2>
+
+<p>安装方式见 <a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a></p>
+
+<h2 id="zsh-插件">zsh 插件</h2>
+
+<ul>
+<li>插件列表（按字母排序） <a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins">https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins</a></li>
+<li>插件列表（按分类排序） <a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins-Overview">https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins-Overview</a></li>
+<li>外部插件： <a href="https://github.com/robbyrussell/oh-my-zsh/wiki/External-plugins">https://github.com/robbyrussell/oh-my-zsh/wiki/External-plugins</a></li>
+</ul>
+
+<p>刚安装完成的 oh-my-zsh 启动时间大概时0.1秒，使用过多的插件会大大增加启动时间。
+可以使用如下命令测试 zsh 的启动速度:</p>
+
+<pre><code>for i in $(seq 1 10); do /usr/bin/time zsh -i -c exit; done
+</code></pre>
+
+<p>在 <code>~/.zshrc</code> 的 <code>plugins=()</code> 中加入要启用的插件名即可启用相应插件，比如:</p>
+
+<pre><code>plugins=(extract pip)
+</code></pre>
+
+<p>下面列举出非常有用且不影响zsh启动速度的插件。</p>
+
+<h3 id="autojump">autojump</h3>
+
+<p>其实跟 zsh 没啥关系，autojump 实现了目录快速跳转。autojump 提供了命令 <code>j</code></p>
+
+<p>跳转到目录名包含 <code>foo</code> 的文件夹:</p>
+
+<pre><code>j foo
+</code></pre>
+
+<p>打开某个文件夹:</p>
+
+<pre><code>jo music
+</code></pre>
+
+<h3 id="extract">extract</h3>
+
+<p>用一个命令解压几乎所有压缩格式:</p>
+
+<pre><code>x ABC.zip
+x ABC.tar.gz
+x ABC.tgz
+...
+</code></pre>
+
+<h3 id="pip">pip</h3>
+
+<p>该插件提供了pip自动补全功能和几个辅助函数:</p>
+
+<ul>
+<li><code>zsh-pip-cache-packages</code></li>
+<li><code>zsh-pip-clear-cache</code></li>
+<li><code>zsh-pip-clean-packages</code></li>
+</ul>
+
+<p>用法：</p>
+
+<ol>
+<li>启用该插件</li>
+<li>终端执行 <code>zsh-pip-cache-packages</code> ，等待缓存完成，约需要两分钟</li>
+
+<li><p>开始使用</p>
+
+<ul>
+<li><code>pip &lt;TAB&gt;</code> 会自动补全 pip 所支持的命令</li>
+<li><code>pip install Hi&lt;TAB&gt;</code> 会自动补全以 <code>Hi</code> 开头的 Python 模块</li>
+</ul></li>
+</ol>
+
+<h3 id="colored-man-pages">colored-man-pages</h3>
+
+<p>为 man page 加上颜色，更加易于查看 man page。</p>
+
+<h3 id="sudo">sudo</h3>
+
+<p>按下两次 Esc 键则自动在命令开头加上 <code>sudo</code></p>
+
+<h3 id="一些命令补全插件">一些命令补全插件</h3>
+
+<p>除了上面提到的插件之后，还有一些可以加入的补全插件：</p>
+
+<ul>
+<li><code>autopep8</code></li>
+<li><code>git-extras</code></li>
+</ul>
+
+<h2 id="zsh-主题">zsh 主题</h2>
+
+<ul>
+<li>自带主题： <a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Themes">https://github.com/robbyrussell/oh-my-zsh/wiki/Themes</a></li>
+<li>外部主题： <a href="https://github.com/robbyrussell/oh-my-zsh/wiki/External-themes">https://github.com/robbyrussell/oh-my-zsh/wiki/External-themes</a></li>
+</ul>
+
+<h2 id="相关资源">相关资源</h2>
+
+<ul>
+<li>awesome-zsh-plugins: <a href="https://github.com/unixorn/awesome-zsh-plugins">https://github.com/unixorn/awesome-zsh-plugins</a></li>
+<li>oh-my-zsh cheatsheet: <a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Cheatsheet">https://github.com/robbyrussell/oh-my-zsh/wiki/Cheatsheet</a></li>
+</ul>
+
+  </div>
+</div>
+
+
+        <footer class="footer">
+    <div class="container">
+        &copy;  2017 - 
+        <span itemprop="copyrightYear"> 2017</span>
+        <span class="with-love"><i class="fa fa-heart"></i></span>
+        <span class="author" itemprop="copyrightHolder">seisman</span>
+        <div class="powered-by">
+            Powered by <a href="https://gohugo.io">Hugo</a>.
+            
+            Last revision: 2017-04-27T22:19:46
+            
+        </div>
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://wiki.seisman.info/js/script.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    }
+  });
+</script>
+
+<script type="text/javascript"
+    src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    </div>
+</body>
+</html>

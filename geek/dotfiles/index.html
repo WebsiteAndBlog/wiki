@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="generator" content="Hugo 0.30.2" />
+    <meta name="author" content="seisman">
+    
+    <title>
+    
+        管理/同步配置文件 | SeisMan&#39;s Wiki
+    
+    </title>
+
+    
+    <link href="https://cdn.bootcss.com/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/featherlight/1.5.0/featherlight.min.css" rel="stylesheet">
+    <link href="http://wiki.seisman.info/css/style.css" rel="stylesheet">
+
+    
+</head>
+
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand " href="/">SeisMan&#39;s Wiki</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right ">
+        
+        
+        
+        <li class="nav-item"><a href="https://github.com/seisman/wiki">GitHub</a></li>
+        
+        
+        
+        <li> <a href="https://github.com/seisman/wiki/blob/master/content/Geek/dotfiles.md" target="blank">Edit on GitHub</a></li>
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+        
+<ul class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  
+  
+  
+  
+  
+  <li><a href='http://wiki.seisman.info/geek'>geek</a></li>
+  
+  
+  
+  
+  
+  <li><a href='http://wiki.seisman.info/geek/dotfiles'>管理/同步配置文件</a></li>
+  
+  
+  
+  
+</ul>
+
+
+        
+<h1>管理/同步配置文件</h1>
+<div class="row">
+  <div id="toc" class="well col-md-3 col-sm-4">
+  <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#安装">安装</a></li>
+<li><a href="#用法">用法</a></li>
+<li><a href="#备份原理">备份原理</a></li>
+<li><a href="#配置">配置</a>
+<ul>
+<li><a href="#全局配置文件">全局配置文件</a></li>
+<li><a href="#自定义配置文件">自定义配置文件</a></li>
+</ul></li>
+<li><a href="#mackup-官方支持软件列表">mackup 官方支持软件列表</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+  <div class="col-md-9">
+  
+
+<p>Linux/macOS 下各种软件都有自己的配置文件，通常是以 <code>.</code> 开头的隐藏文件，比如
+<code>~/.zshrc</code>、<code>~/.vimrc</code> 等。这些文件统称为 dotfiles。</p>
+
+<p>为了备份/同步这些配置文件，最简单的思路是将这些 dotfiles 移动到某个特定的目录，
+然后制作指向原位置的软链接。但这些软链接管理起来却很麻烦。</p>
+
+<p><a href="https://github.com/lra/mackup">mackup</a> 是专门用于管理/备份/同步 dotfiles 的工具。</p>
+
+<h2 id="安装">安装</h2>
+
+<p>macOS 安装 mackup:</p>
+
+<pre><code>brew install mackup
+</code></pre>
+
+<p>Linux 安装 mackup:</p>
+
+<pre><code>pip install mackup
+</code></pre>
+
+<p>mackup v0.8.16 在Python3下似乎有bug，将 <code>site-packages/mackup/config.py</code> 的第225行:</p>
+
+<pre><code>path = path.decode(&quot;utf-8&quot;)
+</code></pre>
+
+<p>修改为:</p>
+
+<pre><code>path = str(path)
+</code></pre>
+
+<p>可以解决此问题。</p>
+
+<h2 id="用法">用法</h2>
+
+<pre><code>mackup -h         显示用法
+mackup list       列出 mackup 官方支持的软件
+mackup backup     备份
+mackup restore    在新机器上恢复
+mackup uninstall  取消 mackup 的备份
+</code></pre>
+
+<h2 id="备份原理">备份原理</h2>
+
+<ol>
+<li>读取配置文件 <code>~/.mackup.cfg</code>，确认哪些文件需要备份，以及要备份到哪些地方</li>
+<li>将需要备份的文件移动到备份目录下</li>
+<li>生成软链接</li>
+</ol>
+
+<h2 id="配置">配置</h2>
+
+<h3 id="全局配置文件">全局配置文件</h3>
+
+<p>全局配置文件为 <code>~/.mackup.cfg</code>:</p>
+
+<pre><code>#
+# mackup 配置文件
+#
+
+# 备份目的地
+[storage]
+# engine 可以取 dropbox|google_drive|icloud|copy|file_system
+# 设置为 file_system 表示将文件备份到某个指定目录下
+engine = file_system
+# 备份目录为 ~/Nutstore/dotfiles
+path = Nutstore
+directory = dotfiles
+
+# 只同步指定软件的配置文件
+[applications_to_sync]
+git          # 官方支持的软件
+mackup       # 自定义的软件，见下一节
+
+# 不同步指定软件的配置文件
+[applications_to_ignore]
+
+# 指定备份特定的文件(似乎无效)
+[configuration_files]
+</code></pre>
+
+<h3 id="自定义配置文件">自定义配置文件</h3>
+
+<p>mackup 官方支持备份300多种软件的配置文件，但并不能满足需求，因而需要能够自定义。</p>
+
+<p>所有自定义软件备份的配置文件都保存在 <code>~/.mackup</code> 目录下:</p>
+
+<pre><code>mkdir ~/.mackup
+cd ~/.mackup
+</code></pre>
+
+<p>创建 <code>mackup.cfg</code> 文件，内容为:</p>
+
+<pre><code>[application]
+name = Mackup
+
+[configuration_files]
+.mackup.cfg
+.mackup
+</code></pre>
+
+<p>然后将 <code>mackup</code> 加入到 <code>~/.mackup.cfg</code> 的 <code>applications_to_sync</code> 中，即可实现 mackup 配置自身的备份。</p>
+
+<h2 id="mackup-官方支持软件列表">mackup 官方支持软件列表</h2>
+
+<p><a href="https://github.com/lra/mackup/tree/master/mackup/applications">https://github.com/lra/mackup/tree/master/mackup/applications</a></p>
+
+  </div>
+</div>
+
+
+        <footer class="footer">
+    <div class="container">
+        &copy;  2017 - 
+        <span itemprop="copyrightYear"> 2017</span>
+        <span class="with-love"><i class="fa fa-heart"></i></span>
+        <span class="author" itemprop="copyrightHolder">seisman</span>
+        <div class="powered-by">
+            Powered by <a href="https://gohugo.io">Hugo</a>.
+            
+            Last revision: 2017-04-27T22:19:46
+            
+        </div>
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://wiki.seisman.info/js/script.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    }
+  });
+</script>
+
+<script type="text/javascript"
+    src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    </div>
+</body>
+</html>

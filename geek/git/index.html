@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="generator" content="Hugo 0.30.2" />
+    <meta name="author" content="seisman">
+    
+    <title>
+    
+        Git 笔记 | SeisMan&#39;s Wiki
+    
+    </title>
+
+    
+    <link href="https://cdn.bootcss.com/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/featherlight/1.5.0/featherlight.min.css" rel="stylesheet">
+    <link href="http://wiki.seisman.info/css/style.css" rel="stylesheet">
+
+    
+</head>
+
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand " href="/">SeisMan&#39;s Wiki</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right ">
+        
+        
+        
+        <li class="nav-item"><a href="https://github.com/seisman/wiki">GitHub</a></li>
+        
+        
+        
+        <li> <a href="https://github.com/seisman/wiki/blob/master/content/Geek/Git.md" target="blank">Edit on GitHub</a></li>
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+        
+<ul class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  
+  
+  
+  
+  
+  <li><a href='http://wiki.seisman.info/geek'>geek</a></li>
+  
+  
+  
+  
+  
+  <li><a href='http://wiki.seisman.info/geek/git'>Git 笔记</a></li>
+  
+  
+  
+  
+</ul>
+
+
+        
+<h1>Git 笔记</h1>
+<div class="row">
+  <div id="toc" class="well col-md-3 col-sm-4">
+  <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#学习资源">学习资源</a></li>
+<li><a href="#配置-git">配置 Git</a></li>
+<li><a href="#git-入门">git 入门</a>
+<ul>
+<li><a href="#远程">远程</a></li>
+<li><a href="#标签">标签</a></li>
+</ul></li>
+<li><a href="#git-高阶">git 高阶</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+  <div class="col-md-9">
+  
+
+<h2 id="学习资源">学习资源</h2>
+
+<ol>
+<li><a href="https://git-scm.com/book/zh/v2">Pro Git 中文版</a></li>
+</ol>
+
+<h2 id="配置-git">配置 Git</h2>
+
+<p>Git 配置文件为 <code>~/.gitconfig</code>。</p>
+
+<pre><code>git config --global user.name &quot;John Doe&quot;
+git config --global user.email johndoe@example.com
+git config --global core.editor vim
+git config --global merge.tool meld
+</code></pre>
+
+<h2 id="git-入门">git 入门</h2>
+
+<p>初始化新仓库:</p>
+
+<pre><code>git init
+</code></pre>
+
+<p>跟踪文件并提交:</p>
+
+<pre><code>git add *.c
+git add README.md
+git ci -m 'initial version'
+</code></pre>
+
+<p>Clone已有仓库:</p>
+
+<pre><code>git clone https://github.com/libgit2/libgit2 mylibgit
+git clone git@github.com:seisman/HinetPy.git
+</code></pre>
+
+<p>修改最后一次提交的信息:</p>
+
+<pre><code>git commit --amend
+</code></pre>
+
+<p>向最后一次提交添加更多内容:</p>
+
+<pre><code>git commit -m 'initial commit'
+git add forgotten_file
+git commit --amend
+</code></pre>
+
+<p>取消暂存的文件:</p>
+
+<pre><code>git reset HEAD xxx.md
+</code></pre>
+
+<p>撤销对文件的修改:</p>
+
+<pre><code>git checkout -- xxx.md
+</code></pre>
+
+<p>重命名本地分支:</p>
+
+<pre><code>git branch -m &lt;newname&gt;
+git branch -m &lt;oldname&gt; &lt;newname&gt;
+</code></pre>
+
+<h3 id="远程">远程</h3>
+
+<p>推送到远程分支:</p>
+
+<pre><code>git push origin master
+</code></pre>
+
+<p>查看远程仓库:</p>
+
+<pre><code>git remote show origin
+</code></pre>
+
+<p>重命名远程仓库:</p>
+
+<pre><code>git remote rename pb paul
+</code></pre>
+
+<p>删除远程仓库:</p>
+
+<pre><code>git remote rm paul
+</code></pre>
+
+<h3 id="标签">标签</h3>
+
+<p>打标签:</p>
+
+<pre><code>git tag 1.2.3
+</code></pre>
+
+<p>推送标签到远程:</p>
+
+<pre><code>git push origin 1.2.3
+git push --tags
+</code></pre>
+
+<p>将标签old重命名为new:</p>
+
+<pre><code>git tag new old  # 在old基础上构建标签new
+git tag -d old   # 删除本地old标签
+git push origin :refs/tags/old  # 删除远程old标签
+git push --tags  # 推送新标签到远程
+</code></pre>
+
+<h2 id="git-高阶">git 高阶</h2>
+
+<ol>
+<li><p>远程已删除分支，但在本地依然存在，欲清理之:</p>
+
+<pre><code>git remote prune origin
+</code></pre></li>
+
+<li><p>指定子模块追踪某个特定的分支</p>
+
+<pre><code># add submodule to track master branch
+git submodule add -b master [URL to Git repo]
+
+# update your submodule
+git submodule update --remote
+</code></pre></li>
+</ol>
+
+  </div>
+</div>
+
+
+        <footer class="footer">
+    <div class="container">
+        &copy;  2017 - 
+        <span itemprop="copyrightYear"> 2017</span>
+        <span class="with-love"><i class="fa fa-heart"></i></span>
+        <span class="author" itemprop="copyrightHolder">seisman</span>
+        <div class="powered-by">
+            Powered by <a href="https://gohugo.io">Hugo</a>.
+            
+            Last revision: 2017-07-14T09:23:29
+            
+        </div>
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://wiki.seisman.info/js/script.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    }
+  });
+</script>
+
+<script type="text/javascript"
+    src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    </div>
+</body>
+</html>

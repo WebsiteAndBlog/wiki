@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="generator" content="Hugo 0.30.2" />
+    <meta name="author" content="seisman">
+    
+    <title>
+    
+        各向异性 | SeisMan&#39;s Wiki
+    
+    </title>
+
+    
+    <link href="https://cdn.bootcss.com/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/featherlight/1.5.0/featherlight.min.css" rel="stylesheet">
+    <link href="http://wiki.seisman.info/css/style.css" rel="stylesheet">
+
+    
+</head>
+
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand " href="/">SeisMan&#39;s Wiki</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right ">
+        
+        
+        
+        <li class="nav-item"><a href="https://github.com/seisman/wiki">GitHub</a></li>
+        
+        
+        
+        <li> <a href="https://github.com/seisman/wiki/blob/master/content/Method/Anisotropy.md" target="blank">Edit on GitHub</a></li>
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+        
+<ul class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  
+  
+  
+  
+  
+  <li><a href='http://wiki.seisman.info/method'>method</a></li>
+  
+  
+  
+  
+  
+  <li><a href='http://wiki.seisman.info/method/anisotropy'>各向异性</a></li>
+  
+  
+  
+  
+</ul>
+
+
+        
+<h1>各向异性</h1>
+<div class="row">
+  <div id="toc" class="well col-md-3 col-sm-4">
+  <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#各向异性是什么">各向异性是什么</a></li>
+<li><a href="#各向异性研究方法">各向异性研究方法</a>
+<ul>
+<li><a href="#pn震相">Pn震相</a></li>
+<li><a href="#s波分裂法">S波分裂法</a></li>
+<li><a href="#接收函数法">接收函数法</a></li>
+<li><a href="#面波频散曲线法">面波频散曲线法</a></li>
+</ul></li>
+<li><a href="#s波分裂">S波分裂</a>
+<ul>
+<li><a href="#切向能量最小法">切向能量最小法</a></li>
+<li><a href="#splitting-intensity">Splitting Intensity</a></li>
+<li><a href="#互相关法">互相关法</a></li>
+</ul></li>
+<li><a href="#参考文献">参考文献</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+  <div class="col-md-9">
+  
+
+<h2 id="各向异性是什么">各向异性是什么</h2>
+
+<p><strong>定义</strong></p>
+
+<p>地震各向异性是指地震波在介质中传播的速度与 <strong>粒子偏振方向</strong> 有关。</p>
+
+<p><strong>物理机制</strong></p>
+
+<p>自然界大多数矿物晶体都是各向异性的，这种各向异性是微观的各向异性。当大量各向异性晶体随机排列时，宏观上表现出各向同性特征。</p>
+
+<p>宏观上的各向异性有两种机制：</p>
+
+<ol>
+<li>LPO(lattice-preferred orientation): 矿物晶体自身就是各向异性，由于晶体颗粒的定向排列而形成宏观的各向异性</li>
+<li>SPO(shape-preferred orientation): 不同波速的各向同性介质定向排列引起宏观各向异性</li>
+</ol>
+
+<p>介质的各向异性与不均匀性是完全不同的两个概念。各向异性描述的是某一点介质属性随方向的变化，而不均匀性描述的是两点之间介质的属性差异。</p>
+
+<p><strong>分类</strong></p>
+
+<p>各向异性的分类：</p>
+
+<ol>
+<li>各向同性介质，弹性参数需要两个参数表示</li>
+<li>VTI, Vertical Transverse Isotropy，各向异性对称轴为垂直向，水平面内不同方向呈现各向同性，弹性参数需要5个参数表示，常见的VTI是由介质分层引起</li>
+<li>HTI, Horizontal Transverse Isotropy，各向异性对称轴为水平向，垂直平面内不同方向呈现各向同性，弹性参数需要5个参数表示，常见的HTI由垂直裂隙引起</li>
+<li>TTI, Tilted Transverse Isotropy, 倾斜各向异性，各向异性对称轴为倾斜方向</li>
+<li>完全各向异性介质，弹性参数需要21个参数</li>
+</ol>
+
+<h2 id="各向异性研究方法">各向异性研究方法</h2>
+
+<h3 id="pn震相">Pn震相</h3>
+
+<h3 id="s波分裂法">S波分裂法</h3>
+
+<h3 id="接收函数法">接收函数法</h3>
+
+<h3 id="面波频散曲线法">面波频散曲线法</h3>
+
+<h2 id="s波分裂">S波分裂</h2>
+
+<h3 id="切向能量最小法">切向能量最小法</h3>
+
+<p><a href="http://dx.doi.org/10.1029/91jb00899">Silver &amp; Chan, 1991, JGR</a></p>
+
+<h3 id="splitting-intensity">Splitting Intensity</h3>
+
+<p><a href="http://dx.doi.org/10.1029/2000JB900199">Chevrot, 2000, JGR</a></p>
+
+<h3 id="互相关法">互相关法</h3>
+
+<h2 id="参考文献">参考文献</h2>
+
+  </div>
+</div>
+
+
+        <footer class="footer">
+    <div class="container">
+        &copy;  2017 - 
+        <span itemprop="copyrightYear"> 2017</span>
+        <span class="with-love"><i class="fa fa-heart"></i></span>
+        <span class="author" itemprop="copyrightHolder">seisman</span>
+        <div class="powered-by">
+            Powered by <a href="https://gohugo.io">Hugo</a>.
+            
+            Last revision: 2017-08-03T15:01:17
+            
+        </div>
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://wiki.seisman.info/js/script.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    }
+  });
+</script>
+
+<script type="text/javascript"
+    src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    </div>
+</body>
+</html>

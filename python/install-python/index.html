@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="generator" content="Hugo 0.30.2" />
+    <meta name="author" content="seisman">
+    
+    <title>
+    
+        安装Python | SeisMan&#39;s Wiki
+    
+    </title>
+
+    
+    <link href="https://cdn.bootcss.com/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/featherlight/1.5.0/featherlight.min.css" rel="stylesheet">
+    <link href="http://wiki.seisman.info/css/style.css" rel="stylesheet">
+
+    
+</head>
+
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand " href="/">SeisMan&#39;s Wiki</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right ">
+        
+        
+        
+        <li class="nav-item"><a href="https://github.com/seisman/wiki">GitHub</a></li>
+        
+        
+        
+        <li> <a href="https://github.com/seisman/wiki/blob/master/content/Python/install-python.md" target="blank">Edit on GitHub</a></li>
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+        
+<ul class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  
+  
+  
+  
+  
+  <li><a href='http://wiki.seisman.info/python'>python</a></li>
+  
+  
+  
+  
+  
+  <li><a href='http://wiki.seisman.info/python/install-python'>安装Python</a></li>
+  
+  
+  
+  
+</ul>
+
+
+        
+<h1>安装Python</h1>
+<div class="row">
+  <div id="toc" class="well col-md-3 col-sm-4">
+  <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#安装-anaconda">安装 anaconda</a></li>
+<li><a href="#修改镜像源以加速">修改镜像源以加速</a>
+<ul>
+<li><a href="#anaconda-镜像">anaconda 镜像</a></li>
+<li><a href="#添加-pip-镜像">添加 pip 镜像</a></li>
+</ul></li>
+<li><a href="#更新-anaconda-预安装的模块">更新 anaconda 预安装的模块</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+  <div class="col-md-9">
+  
+
+<h2 id="安装-anaconda">安装 anaconda</h2>
+
+<ol>
+<li>下载: <a href="https://mirrors.ustc.edu.cn/anaconda/archive/Anaconda3-4.4.0-Linux-x86_64.sh">https://mirrors.ustc.edu.cn/anaconda/archive/Anaconda3-4.4.0-Linux-x86_64.sh</a></li>
+
+<li><p>安装:</p>
+
+<pre><code>$ bash ./Anaconda3-4.4.0-Linux-x86_64.sh
+</code></pre></li>
+
+<li><p>重启终端</p></li>
+</ol>
+
+<h2 id="修改镜像源以加速">修改镜像源以加速</h2>
+
+<h3 id="anaconda-镜像">anaconda 镜像</h3>
+
+<p>添加中科大 Anaconda 源以加快模块的下载速度:</p>
+
+<pre><code>$ conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/free/
+$ conda config --set show_channel_urls yes
+</code></pre>
+
+<p>这两个命令会修改文件 <code>~/.condarc</code> 。</p>
+
+<h3 id="添加-pip-镜像">添加 pip 镜像</h3>
+
+<p>编辑 <code>~/.pip/pip.conf</code> 文件（如果没有则创建之），将 <code>index-url</code> 开头的一行修改为下面一行：</p>
+
+<pre><code>[global]
+index-url = https://pypi.mirrors.ustc.edu.cn/simple
+</code></pre>
+
+<h2 id="更新-anaconda-预安装的模块">更新 anaconda 预安装的模块</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda update conda
+conda update anaconda
+conda update --all</code></pre></div>
+  </div>
+</div>
+
+
+        <footer class="footer">
+    <div class="container">
+        &copy;  2017 - 
+        <span itemprop="copyrightYear"> 2017</span>
+        <span class="with-love"><i class="fa fa-heart"></i></span>
+        <span class="author" itemprop="copyrightHolder">seisman</span>
+        <div class="powered-by">
+            Powered by <a href="https://gohugo.io">Hugo</a>.
+            
+            Last revision: 2017-08-26T22:36:52
+            
+        </div>
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://wiki.seisman.info/js/script.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    }
+  });
+</script>
+
+<script type="text/javascript"
+    src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="generator" content="Hugo 0.30.2" />
+    <meta name="author" content="seisman">
+    
+    <title>
+    
+        接收函数 | SeisMan&#39;s Wiki
+    
+    </title>
+
+    
+    <link href="https://cdn.bootcss.com/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/featherlight/1.5.0/featherlight.min.css" rel="stylesheet">
+    <link href="http://wiki.seisman.info/css/style.css" rel="stylesheet">
+
+    
+</head>
+
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand " href="/">SeisMan&#39;s Wiki</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right ">
+        
+        
+        
+        <li class="nav-item"><a href="https://github.com/seisman/wiki">GitHub</a></li>
+        
+        
+        
+        <li> <a href="https://github.com/seisman/wiki/blob/master/content/Method/receiver-function.md" target="blank">Edit on GitHub</a></li>
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+        
+<ul class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  
+  
+  
+  
+  
+  <li><a href='http://wiki.seisman.info/method'>method</a></li>
+  
+  
+  
+  
+  
+  <li><a href='http://wiki.seisman.info/method/receiver-function'>接收函数</a></li>
+  
+  
+  
+  
+</ul>
+
+
+        
+<h1>接收函数</h1>
+<div class="row">
+  <div id="toc" class="well col-md-3 col-sm-4">
+  <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#基本原理">基本原理</a>
+<ul>
+<li><a href="#原理">原理</a></li>
+<li><a href="#基本假设">基本假设</a></li>
+</ul></li>
+<li><a href="#基本流程">基本流程</a></li>
+<li><a href="#基本参数">基本参数</a></li>
+<li><a href="#反卷积">反卷积</a>
+<ul>
+<li><a href="#频率域除法">频率域除法</a></li>
+<li><a href="#water-level-法">water level 法</a></li>
+<li><a href="#时间域迭代反卷积">时间域迭代反卷积</a></li>
+</ul></li>
+<li><a href="#反演">反演</a>
+<ul>
+<li><a href="#震相相对走时直接反演法">震相相对走时直接反演法</a></li>
+<li><a href="#h-k-法">h-k 法</a></li>
+<li><a href="#共转换点叠加法-ccp">共转换点叠加法（CCP）</a></li>
+</ul></li>
+<li><a href="#s接收函数">S接收函数</a></li>
+<li><a href="#接收函数的应用">接收函数的应用</a></li>
+<li><a href="#可能的研究方向">可能的研究方向</a></li>
+<li><a href="#参考文献">参考文献</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+  <div class="col-md-9">
+  
+
+<p>对于远震P波记录，将R分量反卷积Z分量即得到P波接收函数。P波接收函数是台站下方介质对远震入射
+P波的介质响应。</p>
+
+<p>以最简单的单层地壳模型为例，接收函数中主要的震相是直达 P，Ps, PpSs, PsPs 等。
+一个典型的接收函数如图所示：</p>
+
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcly1ffqt93rfjzj311g0jan00.jpg" alt="" /></p>
+
+<p>接收函数反映了台站下方的介质信息，因而可以用于约束台站下方结构。接收函数中可用的信息包括但不限于：</p>
+
+<ol>
+<li>震相走时差</li>
+<li>震相相对振幅</li>
+<li>波形</li>
+</ol>
+
+<h2 id="基本原理">基本原理</h2>
+
+<h3 id="原理">原理</h3>
+
+<p>台站处的地震记录可以表示为震源项、路径项和仪器响应的卷积：</p>
+
+<p>$$ U_R(t) = S(t)*E(t)*E_R(t)*I(t) $$
+$$ U_Z(t) = S(t)*E(t)*E_Z(t)*I(t) $$</p>
+
+<p>其中 $U_R(t)$ 和 $U_Z(t)$ 分别表示地震记录的R分量和Z分量。 $S(t)$ 为震源项，$E(t)$ 表示从
+震源到台站下方的介质响应。 $E_R(t)$ 和 $E_Z(t)$ 代表台站下方的介质响应，$I(t)$ 代表仪器响应。</p>
+
+<p>假设 $E_Z(T) \approx \delta(t)$，则可得到：</p>
+
+<p>$$U_Z(t) \approx S(t) * I(t)$$</p>
+
+<p>由于时间域的卷积等于频率域相乘，因而得到</p>
+
+<p>$$\frac{U_R(w)}{U_Z(w)}=\frac{S(w)E_R(w)E(w)I(w)}{S(w)E(w)I(w)}= E_R(w) $$</p>
+
+<p>即将远震P波观测数据的R分量反卷积Z分量可得到台站下方的介质响应。</p>
+
+<h3 id="基本假设">基本假设</h3>
+
+<p>接收函数的基本假设是台站下方介质响应的Z分量近似为脉冲函数。这一近似成立的条件是P波近垂直入射。</p>
+
+<p>当P波近垂直入射时，由于P波偏振方向平行于波传播方向，故而Z分量中P震相振幅很大，而Ps
+震相偏振方向垂直于波传播方向，故而Z分量Ps震相振幅很小。入射角越小，Z分量上的Ps震相
+震相越小，因而将Z分量近似为脉冲函数。故而只有当震中距较大时才能满足这一近似条件，故而接收
+函数要求震中距大于30度。</p>
+
+<p>而当P波垂直入射时，此时P波到S波的转换系数近似为0，因而R分量将看不到Ps震相，无法
+用于接收函数的研究，故而P波入射角也不能太小。实际情况下震中距上限设为95度。</p>
+
+<h2 id="基本流程">基本流程</h2>
+
+<ol>
+<li>数据筛选
+
+<ol>
+<li>Mw&gt;5.5</li>
+<li>震中距: 30-95</li>
+</ol></li>
+<li>以P波走时作为参考，截取-30 s到120 s的波形</li>
+<li>滤波至 0.05-1.5 Hz</li>
+<li>旋转至RTZ分量或LQT分量</li>
+<li>R分量反卷积Z分量得到接收函数</li>
+<li>利用接收函数反演地下结构</li>
+</ol>
+
+<h2 id="基本参数">基本参数</h2>
+
+<p>利用 TauP 可以计算接收函数的一些基本参数:</p>
+
+<pre><code>$ taup_time -mod prem -ph P,P24.4s -h 100 -deg 36
+$ taup_time -mod prem -ph P,P24.4s -h 100 -deg 98
+$ taup_pierce -mod prem -ph P,P24.4s -h 100 -deg 36
+$ taup_pierce -mod prem -ph P,P24.4s -h 100 -deg 98
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>震中距</th>
+<th>Ps-P走时(s)</th>
+<th>Ps-P入射角(度)</th>
+<th>Ps-P 离台站距离(度)</th>
+<th>Ps-P 射线参数 (s/deg)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>36度</td>
+<td>414.37-411.03=3.34</td>
+<td>14.17 vs 26.35</td>
+<td>0.06 vs 0.12</td>
+<td>8.507 vs 8.511</td>
+</tr>
+
+<tr>
+<td>98度</td>
+<td>806.64-803.46=3.17</td>
+<td>7.33 vs 13.36</td>
+<td>0.03 vs 0.06</td>
+<td>4.430 vs 4.431</td>
+</tr>
+</tbody>
+</table>
+
+<p>一些总结:</p>
+
+<ol>
+<li>Ps-P走时差随震中距变化很小，因而在简单情况下可以对接收函数做直接迭加</li>
+<li>Ps, P在Moho的穿透点与台站的水平距离在13km 之内 =&gt; 不同震中距的接收函数采样了台站下方半径13km的圆锥</li>
+<li>Ps-P走时差、P和Ps入射角以及Ps-P与台站的距离对震源深度不敏感 =&gt; 不同深度的接收函数可以直接叠加</li>
+</ol>
+
+<h2 id="反卷积">反卷积</h2>
+
+<p>计算接收函数的核心步骤是反卷积。反卷积有多种算法。</p>
+
+<h3 id="频率域除法">频率域除法</h3>
+
+<p>时间域的反卷积等效于频率域的除法。因而，接收函数理论上可用如下公式计算：</p>
+
+<p>$$ R(w)=\frac{U_R(w)}{U_Z(w)} $$</p>
+
+<p>但频率域除法在遇到高频噪声以及频谱中低值时很不稳定，类似于数学中的除0。</p>
+
+<h3 id="water-level-法">water level 法</h3>
+
+<p>water level法的做法是人为给谱域除法加上一个常数，使得分母上的谱不小于这一常数值。</p>
+
+<p>基本公式：</p>
+
+<p>$$ r(\omega) = (1+c) \frac{R(\omega)S^*(\omega)}{|S(\omega)|^2+c\sigma_0^2} e^{-\frac{\omega^2}{4\alpha^2}} $$</p>
+
+<p>几点说明:</p>
+
+<ol>
+<li>引入 $S^*(\omega)$ 的目的是为了使分母变成实数，将复数除法变成乘法</li>
+<li>$e^{-\frac{\omega^2}{4\alpha^2}}$ 对得到的结果做高斯低通滤波以消除高频噪声的影响，根据
+$\alpha$ 的值可以计算出滤波器的截止频率</li>
+<li>为了防止除零或除以小值导致结果不稳定，加入了 $c\sigma_0^2$ 项，c的选取需要
+根据频率域除法的结果以及经验判断，通常取0.1-0.5</li>
+<li>$1+c$ 的目的在于补偿由于water level造成的振幅损失</li>
+</ol>
+
+<h3 id="时间域迭代反卷积">时间域迭代反卷积</h3>
+
+<p><a href="http://www.bssaonline.org/content/89/5/1395.short">Ligorría &amp; Ammon, 1999, BSSA</a></p>
+
+<p>将接收函数看做是一堆脉冲的叠加：</p>
+
+<div> $$R(t)=Z(t)*RF(t)=Z(t)*\sum_m \delta(t_m)=\sum_mZ(t)*\delta(t_m)=\sum_m Z(t_m)$$ </div>
+
+<p>由此可以得到，R(t)可以认为一堆Z(t)的叠加。因而时间域迭代反卷积的做法是：</p>
+
+<ol>
+<li>将Z(t)与R(t)做相关，相关系数最大的时间点对应两个接收函数中最大的脉冲之间的时间差</li>
+<li>计算这个时刻的脉冲所对应的振幅，得到第一个接收函数</li>
+<li>将此接收函数卷积Z分量，然后将其从R(t)中减去</li>
+<li>重复步骤1-3，直到最终得到的接收函数和Z(t)的卷积与Z(t)相似为止</li>
+</ol>
+
+<h2 id="反演">反演</h2>
+
+<h3 id="震相相对走时直接反演法">震相相对走时直接反演法</h3>
+
+<p>根据地震学基本公式 $dt = p dx + \eta dz$ 以及射线参数保持不变这一特性，得到</p>
+
+<p>$$ T = p X + \int \eta dz $$</p>
+
+<p>其中 T 是震相走时，X 是震中距，p 是射线参数，$\eta$ 是垂直慢度。</p>
+
+<p>进一步得到：</p>
+
+<div>$$ T = p X + \int_h^{hmax} \eta dz + \int_{hmax}^{H} \eta dz + \int_{H}^0 \eta dz $$</div>
+
+<p>其中 h 是震源深度，hmax 是射线最深穿透深度，H 是 Moho 深度。</p>
+
+<p>下面以36度为例，分别讨论上面四项对 Ps-P 走时差的贡献：</p>
+
+<ol>
+<li>$p_1 * X - p_0 * X = (8.507-8.511) * X = -0.004*X=-0.15 s$</li>
+<li>$\eta_1 - \eta_2 = \sqrt{\frac{1}{Vp^2}-p_1^2} - \sqrt{\frac{1}{Vp^2}-p_1^2}$
+由此可以估算出第二项以及第三项的贡献之和大约是0.1 s</li>
+</ol>
+
+<p>由此可知，第一、二、三项的贡献很小，可以忽略，进而得到：</p>
+
+<p>$$ t_{Ps-P} = H * (\sqrt{\frac{1}{V_s^2}-p^2} - \sqrt{\frac{1}{V_p^2}-p^2}) $$</p>
+
+<p>即，接收函数中 Ps-P 走时差与地壳内平均 Vp、Vs、射线参数 p 和地壳厚度 H 有关。</p>
+
+<p>由此，可根据 Ps-P 走时差反演得到 Vp、Vs 和 H。</p>
+
+<p>此方法的缺点在于：</p>
+
+<ol>
+<li>Ps 震相微弱，难以拾取</li>
+<li>Moho深度与Vp/Vs之间存在trade-off，即存在多个 H 与 Vp/Vs 的组合计算得到的 Ps-P 走时差与观测相同。</li>
+</ol>
+
+<h3 id="h-k-法">h-k 法</h3>
+
+<p><a href="http://dx.doi.org/10.1029/1999JB900322">Zhu &amp; Kanamori, 2000, JGR</a></p>
+
+<p>如果只使用 Ps-P 走时差，由于 Moho深度与 Vp/Vs 存在 trade-off，所以无法约束介质结构。</p>
+
+<p>hk 方法额外引入了 PsPs 和 PpSs+PsPs 震相。对于每个Moho深度 H 和 k 值，可计算理论的三个
+走时残差，然后将三个走时所对应的振幅按照如下公式</p>
+
+<p>$$ s(H,k) = w_1 r(t_1) + w_2 r(t_2) + w_3 r(t_3)$$</p>
+
+<p>加权起来作为该点的值，最终得到 h-k 图。</p>
+
+<p>此法适用于同一个台站多个地震的多个接收函数，对于每个接收函数，均可计算出 $s(H,k)$，然后对所有
+计算得到的 $s(H,k)$ 做叠加即可。</p>
+
+<h3 id="共转换点叠加法-ccp">共转换点叠加法（CCP）</h3>
+
+<p>基本原理：认为接收函数中的每个波形的振幅正比于特定深度处界面的波阻抗，因而可以将接收函数从时间
+域反投回深度域。</p>
+
+<p>具体操作如下：</p>
+
+<ol>
+<li>根据背景速度模型计算出Ps转换波射线路径</li>
+<li>将接收函数的振幅做入射角校正，并将振幅值放在 Ps 射线路径上对应的位置</li>
+<li>将整个区域分成固定大小的网格，并计算每个网格内振幅的均值</li>
+</ol>
+
+<p>缺点：</p>
+
+<ol>
+<li>假定了一维速度模型</li>
+<li>只能处理Ps震相</li>
+<li>地壳多次反射波会被成像在更深的地方，因而CCP结果中会出现假界面。这一界面深度在100-250 km左右，恰好与LAB深度差不多，因而P波接收函数不能用于成像LAB</li>
+</ol>
+
+<h2 id="s接收函数">S接收函数</h2>
+
+<p>S波接收函数的原理与P接收函数的原理类似，其优点在于Moho、LAB、410和660界面的转换波均出现在S波到时的前面，而地壳多次波的到时在S波之后，因而S波接收函数中不会出现
+地壳多次波的假界面现象，适合研究LAB。</p>
+
+<p>缺点：</p>
+
+<ol>
+<li>S波位于P波的尾波内，噪声较大</li>
+<li>S波比P波更低频，因而分辨率更低</li>
+<li>S波到P波的转换波仅在一个小震中距范围内存在</li>
+</ol>
+
+<p>数据筛选:</p>
+
+<ol>
+<li>S: 55-85°</li>
+<li>SKS: &gt;85°</li>
+<li>ScS: 50-75°</li>
+</ol>
+
+<h2 id="接收函数的应用">接收函数的应用</h2>
+
+<ol>
+<li>地壳厚度变化</li>
+<li>地壳内平均波速比变化</li>
+<li>地壳地幔内界面（Moho、LAB、410、660等）</li>
+<li>反演S波速度</li>
+</ol>
+
+<h2 id="可能的研究方向">可能的研究方向</h2>
+
+<ol>
+<li>更精确的反卷积方法</li>
+<li>利用接收函数更精确地得到地下成像</li>
+<li>消除浅部结构的多次波造成的假象</li>
+<li>计算接收函数相对于模型的偏导，用于线性反演中</li>
+<li>接收函数与其他方法的联合反演</li>
+</ol>
+
+<h2 id="参考文献">参考文献</h2>
+
+<ol>
+<li><a href="http://dx.doi.org/10.1029/1999JB900322">Zhu &amp; Kanamori, 2000, JGR</a></li>
+<li><a href="http://www.bssaonline.org/content/89/5/1395.short">Ligorría &amp; Ammon, 1999, BSSA</a></li>
+<li><a href="http://dx.doi.org/10.1016/S0012-821X(00)00101-1">Zhu, 2000, EPSL</a></li>
+<li><a href="http://dx.doi.org/10.1111/j.1365-246X.2006.02885.x">Yuan et. al., 2006, GJI</a></li>
+</ol>
+
+  </div>
+</div>
+
+
+        <footer class="footer">
+    <div class="container">
+        &copy;  2017 - 
+        <span itemprop="copyrightYear"> 2017</span>
+        <span class="with-love"><i class="fa fa-heart"></i></span>
+        <span class="author" itemprop="copyrightHolder">seisman</span>
+        <div class="powered-by">
+            Powered by <a href="https://gohugo.io">Hugo</a>.
+            
+            Last revision: 2017-07-28T00:33:39
+            
+        </div>
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://wiki.seisman.info/js/script.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    }
+  });
+</script>
+
+<script type="text/javascript"
+    src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    </div>
+</body>
+</html>
